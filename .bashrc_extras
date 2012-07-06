@@ -1,0 +1,58 @@
+
+# Pretty colored prompt with git branch (for git clones)
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[32m\]$(__git_ps1 " (%s)") \[\033[0m\]\$ '
+
+# My local installs rule them all
+export PATH=/Users/bjori/.apps/bin:$PATH
+# Prioritize stuff I've isntalled via brew (i.e. working ctags)
+export PATH=/usr/local/bin:$PATH
+
+# Colors for man pages
+export LESS_TERMCAP_mb=$'\E[01;43m'
+export LESS_TERMCAP_md=$'\E[01;35m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+#export GREP_OPTIONS="--exclude-dir=.svn"
+
+# Ignore duplicates in the history
+export HISTCONTROL=ignoredups
+
+# PHP build
+export TEST_PHP_EXECUTABLE=auto
+export SHOW_ONLY_GROUPS=SKIP,FAIL
+#export NO_INTERACTION=1
+
+# Launchpad
+export DEBFULLNAME="Hannes Magnusson"
+export DEBEMAIL=bjori@php.net
+
+
+# start keychain, feed it keys and source the results
+if [ -x "/usr/bin/keychain" ]; then
+	/usr/bin/keychain -Q -q ~/.ssh/id_rsa < /dev/null
+	[ -f $HOME/.keychain/$HOSTNAME-sh ] && source $HOME/.keychain/$HOSTNAME-sh
+fi
+
+
+# echo the `todo reminder`
+#[ -f $HOME/.TODO ] && cat $HOME/.TODO
+#[ -f $HOME/NOTES ] && tail $HOME/NOTES
+
+# bash completion from brew
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
+# PHP saves previous ./configure settings in config.nice..
+complete -F _configure config.nice
+
+# Use vim for editor
+export EDITOR="vim"
+# Use vi mode :D
+set -o vi
+# Map ctrl+l in insert mode too
+bind -m vi-insert "\C-l":clear-screen
+

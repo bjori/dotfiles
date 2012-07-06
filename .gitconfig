@@ -1,0 +1,52 @@
+# vim:ft=gitconfig
+[user]
+    name = Hannes Magnusson
+    email = bjori@10gen.com
+
+[alias]
+    co=checkout
+    st=status
+    br = branch
+    df = diff
+    dc = diff --staged
+    logp = log --patch
+    vf = fetch -f -v 
+
+    history = log --graph --abbrev-commit --date=relative --decorate
+    histories = log --graph --abbrev-commit --date=relative --decorate --all
+    metro = log --graph --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+    lg = log --decorate --stat --graph --pretty=format:'%C(yellow)%h%Creset (%ar - %Cred%an%Creset), %s%n'
+    l=log --decorate=full
+
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+
+[core]
+    excludesfile = ~/.gitignore
+    pager=less -FXRS
+    editor = vim +0 -f
+
+[merge]
+    log = true
